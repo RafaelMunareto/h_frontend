@@ -1,0 +1,41 @@
+<ng-container *ngIf="item">
+  <div class="menu-ico menu-group-items" [class.icon-mode]="iconMode"
+    (mouseenter)="hover = true" (mouseleave)="hover = false" [class.is-new]="(item.eh_novo == true && !iconMode)">
+
+    <a *ngIf="!item.link_externo" [routerLink]="item.link" class="w-100 d-flex align-items-center" [class.flex-col-center]="iconMode">
+      <img *ngIf="item.eh_novo == true && iconMode" src="assets/img/face-caixa/new.png" class="new-ico-flag" [class.new-ico-list]="!iconMode" />
+      <img [src]="iconSrc" alt="" class="menu-item-icon" [class.item-icon-mode]="iconMode"  *ngIf='iconSrc' />
+      <i [class]='item.icone' *ngIf='item.icone && !iconSrc' style="font-size: 18px"></i>
+      <span [class.list-mode]="!iconMode">{{ nome }}</span>
+    </a>
+
+    <a *ngIf="item.link_externo" [href]="item.link" target="_blank" class="w-100 d-flex align-items-center" [class.flex-col-center]="iconMode">
+      <img *ngIf="item.eh_novo == true && iconMode" src="assets/img/face-caixa/new.png" class="new-ico-flag" [class.new-ico-list]="!iconMode"/>
+      <img [src]="iconSrc" alt="" class="menu-item-icon" [class.item-icon-mode]="iconMode" *ngIf='iconSrc'/>
+      <i [class]='item.icone' *ngIf='item.icone && !iconSrc' style="font-size: 18px"></i>
+      <span [class.list-mode]="!iconMode">{{ nome }}</span>
+    </a>
+
+    <button
+      pButton
+      class="p-button-sm p-button-text p-button-warning p-button-rounded"
+      [class.list-mode-button]="!iconMode"
+      pTooltip="Adicionar aos Favoritos"
+      icon="far fa-star"
+      *ngIf="podeAdicionarAosFavoritos"
+      tooltipPosition="left"
+      (click)="adicionaFavorito()"
+    ></button>
+
+    <button
+      pButton
+      class="p-button-sm p-button-text p-button-warning p-button-rounded"
+      [class.list-mode-button]="!iconMode"
+      pTooltip="Remover aos Favoritos"
+      icon="fas fa-star"
+      *ngIf="podeRetirarDosFavoritos"
+      tooltipPosition="left"
+      (click)="removeFavorito()"
+    ></button>
+  </div>
+</ng-container>

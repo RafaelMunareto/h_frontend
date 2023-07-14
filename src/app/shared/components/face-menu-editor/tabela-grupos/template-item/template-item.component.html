@@ -1,0 +1,29 @@
+<div class="flex align-items-center" *ngIf="item">
+  <div class="flex flex-grow-1 align-items-center">
+    <div [ngSwitch]="tipoPreview(item)" class="mr-4">
+      <img
+        [src]="linkImagem(item.thumbnail_id)"
+        *ngSwitchCase="'thumb'"
+        [style]="estiloImagem"
+      />
+      <img
+        [src]="linkImagem(item.imagem_id)"
+        *ngSwitchCase="'img'"
+        [style]="estiloImagem"
+      />
+      <i [style]="estiloIcone" [class]="item.icone" *ngSwitchCase="'icon'"></i>
+    </div>
+
+    <div>{{ item.nome }}</div>
+  </div>
+  <div class="flex flex-grow-0">
+    <button
+      pButton
+      class="p-button-danger p-button-sm"
+      icon="pi pi-times"
+      pTooltip="Remover"
+      (click)="onDeleteItem.emit(item)"
+      *ngIf="podeDeletar"
+    ></button>
+  </div>
+</div>

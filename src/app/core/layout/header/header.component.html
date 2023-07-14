@@ -1,0 +1,148 @@
+<p-toast position="top-right"></p-toast>
+<p-scrollTop></p-scrollTop>
+
+<div class="relative header-container">
+  <div
+    class="w-full flex"
+    [style]="{ background: (headerBackgroundColor$ | async) }"
+    id="teste"
+  >
+    <div class="flex-1 flex flex-column container-logo-texto">
+      <div [ngSwitch]="rede$ | async">
+        <img
+          *ngSwitchCase="'agro'"
+          src="assets/img/logos/logo_rede_agro_azul.png"
+          class="logo-texto-rede-varejo cursor-pointer"
+          [routerLink]="['agro']"
+        />
+
+        <img
+          *ngSwitchCase="'digital'"
+          src="assets/img/logos/logo_rede_digital_roxo.png"
+          class="logo-texto-rede-varejo cursor-pointer"
+          [routerLink]="['digital']"
+        />
+        <img
+          *ngSwitchDefault
+          [src]="hTemas.logoRede"
+          [routerLink]="['varejo']"
+          class="logo-texto-rede-varejo cursor-pointer"
+        />
+      </div>
+      <app-controle-versao id="version-text"></app-controle-versao>
+    </div>
+    <div class="flex-1 flex justify-content-center">
+      <ng-container *ngIf="autocompleteVisivel$ | async">
+        <ng-container *ngIf="autocompleteTipo$ | async as tipo">
+          <ng-container [ngSwitch]="tipo">
+            <app-autocomplete-matricula
+              *ngSwitchCase="'matricula'"
+              class="w-full"
+              (onSelect)="onAutocompleteSelectHandler($event)"
+            ></app-autocomplete-matricula>
+            <app-autocomplete-unidade-matricula
+              *ngSwitchCase="'matricula-unidade'"
+              class="w-full"
+              (onSelect)="onAutocompleteSelectHandler($event)"
+            ></app-autocomplete-unidade-matricula>
+            <app-autocomplete-unidade-matricula
+              *ngSwitchCase="'unidade-matricula'"
+              class="w-full"
+              (onSelect)="onAutocompleteSelectHandler($event)"
+            ></app-autocomplete-unidade-matricula>
+            <app-autocomplete-unidades
+              *ngSwitchDefault
+              class="w-full"
+              (onSelect)="onAutocompleteSelectHandler($event)"
+            ></app-autocomplete-unidades>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="flex-1 flex align-items-center flex-row justify-content-end">
+      <img [src]="hTemas.logoGesun" alt="" class="logo-gesun mr-2" />
+    </div>
+  </div>
+
+  <div class="w-full flex header-inferior">
+    <div class="flex-1 flex flex-column container-logo-texto h-100 pt-2">
+      <div class="flex align-items-center">
+        <span class="text-sm">{{ classificacao$ | async }}</span>
+      </div>
+      <div class="flex align-items-center">
+        <span class="text-sm" [style]="{ color: hTemas.hashTag.cor }">{{
+          hTemas.hashTag.texto
+        }}</span>
+      </div>
+    </div>
+
+    <div class="flex-0 flex flex-column h-100 pt-2 pr-5">
+      <div class="flex align-items-center">
+        <a
+          href="http://meajuda.caixa/assistente-cognitiva-caixa"
+          target="_blank"
+        >
+          <p-image
+            pTooltip="meajuda.caixa"
+            tooltipPosition="left"
+            src="assets/img/face-caixa/mia_ico.png"
+          ></p-image>
+        </a>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="flex-1 flex justify-content-center align-items-center">
+        <img class="gesoon-logo" src="assets/img/gesoon/Gesoon_180.png" />
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            class="gesoon-search p-inputtext-sm"
+            (keyup.enter)="searchIt()"
+            type="text"
+            pInputText
+            placeholder="Buscar no Gesoon..."
+            [(ngModel)]="gesoonSearch"
+          />
+        </span>
+      </div>
+
+      <app-incidente
+        *ngIf="infoGesun$ | async as infoGesun"
+        [usuario]="infoGesun"
+        class="ml-2"
+      ></app-incidente>
+    </div>
+    <div class="flex-1 flex justify-content-end align-items-center min-w-0">
+      <app-usuario
+        *ngIf="infoGesun$ | async as infoGesun"
+        [infoGesun]="infoGesun"
+        [simulado]="simulado$ | async"
+        [gesun]="(podeSimular$ | async) ?? false"
+        class="mr-2 overflow-hidden"
+        (showModal)="abreModalSimulacao()"
+      ></app-usuario>
+      <app-notificacoes
+        *ngIf="infoGesun$ | async"
+        class="mr-2"
+      ></app-notificacoes>
+
+      <app-historico-notificacoes></app-historico-notificacoes>
+    </div>
+    <app-menu-lateral
+      [logoIco]="hTemas.menuLogo"
+      [corHeader]="hTemas.hClass"
+    ></app-menu-lateral>
+  </div>
+
+  <app-msg-grupo-trabalho
+    GrupoTrabalho="gt_raiox3"
+    [Mensagem]="msgText"
+    Icone="fas fa-gift"
+  ></app-msg-grupo-trabalho>
+
+  <app-simulacao
+    (close)="fechaModalSimulacao()"
+    [visivel]="modalSimulacaoVisivel"
+  ></app-simulacao>
+</div>

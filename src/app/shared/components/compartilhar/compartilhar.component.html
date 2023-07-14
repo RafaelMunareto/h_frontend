@@ -1,0 +1,216 @@
+<button
+  *ngIf="betaTester && !btnFilhas"
+  id="compartilharBotao"
+  pButton
+  type="button"
+  [disabled]="btnFilhas"
+  (click)="compartilhar()"
+  [label]="botaoSomenteComIcone ? '' : 'Compartilhar'"
+  [class]="
+    botaoSimples
+      ? 'p-button p-button-rounded p-button-help p-button-text'
+      : 'ml-2 pl-4 pr-4 p-button-help'
+  "
+  [icon]="btnFilhas ? 'pi pi-spin pi-spinner' : 'pi pi-share-alt'"
+></button>
+
+<!-- Modal Novo Post -->
+<p-dialog
+  *ngIf="displayNewPost"
+  header="Criar Novo Post"
+  [(visible)]="displayNewPost"
+  [modal]="true"
+  [style]="{ width: '45vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  [baseZIndex]="100000"
+  appendTo="body"
+>
+  <div
+    class="card-like w100 my-3"
+    style="max-width: 782px !important; margin: auto"
+  >
+    <div class="modal-loading-new" *ngIf="isLoadingNew">
+      <i class="fad fa-spinner-third fa-spin"></i>
+      <span>{{ loadingNewText }}</span>
+    </div>
+    <!-- Header -->
+    <div class="w100 d-flex pt-2">
+      <div class="w100 d-flex align-items-center">
+        <i class="fad fa-store-alt h-card-ico"></i>
+        <div class="w100 pl-2 overflow-hidden">
+          <div class="w100 h-card-title">
+            {{ currUser.info_lotacao_original?.nu_unidade ?? '' }} -
+            {{ currUser.info_lotacao_original?.no_unidade ?? '' }}
+          </div>
+          <small class="w100">Post criado em {{ hoje }}</small>
+        </div>
+      </div>
+    </div>
+    <!-- Body -->
+    <form
+      name="newForm"
+      (ngSubmit)="commitNewPost(frm)"
+      #frm="ngForm"
+    >
+      <div>
+        <div class="add-post-header">
+          <div class="add-post-title">
+            <i class="fad fa-vote-yea mr-2"></i>
+            <input
+              type="text"
+              [(ngModel)]="newPost.titulo"
+              placeholder="Título do post..."
+              style="width: 100%"
+              pInputText
+              name="titulo"
+              [class.ng-dirty]="frm.submitted && title.invalid"
+              required
+              #title="ngModel"
+            />
+          </div>
+          <small *ngIf="frm.submitted && title.invalid" class="p-error"
+            >Preencha o título do post.</small
+          >
+        </div>
+
+        <div class="body-card-text">
+
+          <ng-container *ngIf="!advancedMode">
+            <div
+              class="modal-img mb-2"
+              style="max-height: 300px; max-width: 750px; overflow: scroll"
+            >
+              <img
+                #imgDragDiv
+                id="imgDragDiv"
+                [src]="this.imagem"
+                class="my-1"
+                [class.move-cursor]="hasFile && upFileType == 'img'"
+                style="min-width: 690px; min-height: 280px"
+              />
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="advancedMode">
+            <!-- IMAGEM COM EDIÇÃO -->
+            <div
+              #imgDragDiv
+              id="imgDragDiv"
+              class="w100 modal-img mb-1"
+              [class.move-cursor]="hasFile && upFileType == 'img'"
+              (mousedown)="toggleDragging($event, false)"
+              (mouseup)="toggleDragging($event, true)"
+              (mouseleave)="toggleDragging($event, true)"
+              (wheel)="zoomIt($event, imgDragDiv)"
+              [style]="{
+                'background-image': 'url(\'' + tempImg + '\')',
+                'background-position': '0px 0px',
+                'background-repeat': 'no-repeat',
+                width: '750px',
+                height: '300px'
+              }">
+  
+            </div>
+            <div *ngIf="upFileType == 'img'"
+              class="w100 d-flex align-items-center mb-3 justify-content-between">
+              <button
+                (click)="keepSize(imgDragDiv!, 'W')"
+                type="button"
+                class="p-button-secondary"
+                icon="fas fa-arrows-alt-h"
+                pButton
+                pRipple
+                label="Manter Largura"
+              ></button>
+              <button
+                (click)="keepSize(imgDragDiv, 'H')"
+                type="button"
+                class="p-button-secondary"
+                icon="fas fa-arrows-alt-v"
+                pButton
+                pRipple
+                label="Manter Altura"
+              ></button>
+              <button
+                (click)="setOriginalSize(imgDragDiv)"
+                type="button"
+                class="p-button-secondary"
+                icon="far fa-expand-arrows"
+                pButton
+                pRipple
+                label="Tamanho original"
+              ></button>
+              <button
+                (click)="centerImage(imgDragDiv)"
+                type="button"
+                class="p-button-secondary"
+                icon="far fa-plus-square"
+                pButton
+                pRipple
+                label="Centralizar"
+              ></button>
+            </div>
+            <!-- IMAGEM COM EDIÇÃO -->
+          </ng-container>
+
+          <div
+            *ngIf="loadImg"
+            class="w-100 text-center centralizar d-flex flex-column justify-content-center"
+          >
+            <p-progressSpinner></p-progressSpinner>
+            <span>Carregando imagem, aguarde...</span>
+          </div>
+          <app-marca-unidade
+            [(ngModel)]="newPost.texto"
+            name="texto"
+            required
+            #text="ngModel"
+            (unidadesMarcadas)="mrkUns = $event"
+          ></app-marca-unidade>
+          <small *ngIf="frm.submitted && text.invalid" class="p-error"
+            >Preencha o texto do post.</small
+          >
+        </div>
+      </div>
+      <div class="w100 text-right">
+        <button
+          pButton
+          pRipple
+          [loading]="isLoadingNew"
+          type="submit"
+          icon="fas fa-newspaper"
+          label="Publicar Novo Post"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          (click)="displayNewPost = false"
+          label="Fechar"
+          class="p-button-secondary ml-2"
+        ></button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
+
+<p-dialog
+  *ngIf="displayNewPost2"
+  header="Funcionalidade do Novo Rede Varejo"
+  [(visible)]="displayNewPost2"
+  [modal]="true"
+  [style]="{ width: '45vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div
+    class="body-card-text w-100 d-flex justify-content-center flex-column align-items-center"
+    style="height: 250px; font-size: 1.3rem"
+  >
+    <span> Em breve nova funcionalidade... ;)</span>
+    <span class="text-right" style="height: 150px; font-size: 0.8rem">
+      GESUN</span
+    >
+  </div>
+</p-dialog>

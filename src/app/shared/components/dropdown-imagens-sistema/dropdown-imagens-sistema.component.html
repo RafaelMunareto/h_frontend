@@ -1,0 +1,116 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="w-full flex">
+    <div class="flex-grow-1">
+      <div class="p-float-label" *ngIf="floatingLabel && label">
+        <p-dropdown
+          [options]="vm.arquivos"
+          optionValue="id"
+          optionLabel="descricao"
+          [filter]="true"
+          inputStyleClass="w-full"
+          styleClass="w-full"
+          [(ngModel)]="model"
+          [autoDisplayFirst]="false"
+          (onChange)="onChange.emit($event.value)"
+          [disabled]="vm.carregando"
+        >
+          <ng-template let-arquivo pTemplate="item">
+            <div class="flex align-items-center my-2">
+              <img
+                [IdImage]="arquivo.id"
+                class="list-img flex-grow-0 cursor-pointer"
+              />
+              <div class="flex-grow-1 px-2">{{ arquivo.nome_exibicao }}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+
+        <label for="dropdown">{{ label }}</label>
+      </div>
+    </div>
+    <div class="flex align-items-center" *ngIf="!floatingLabel">
+      <label class="text-sm mr-2" *ngIf="label">{{ label }}</label>
+      <p-dropdown
+        [options]="vm.arquivos"
+        optionValue="id"
+        optionLabel="descricao"
+        [filter]="true"
+        inputStyleClass="w-full"
+        styleClass="w-full"
+        [(ngModel)]="model"
+        [autoDisplayFirst]="false"
+        (onChange)="onChange.emit($event.value)"
+        [disabled]="vm.carregando"
+      >
+        <ng-template let-arquivo pTemplate="item">
+          <div class="flex align-items-center my-2">
+            <img
+              [IdImage]="arquivo.id"
+              class="list-img flex-grow-0 cursor-pointer"
+            />
+            <div class="flex-grow-1 px-2">{{ arquivo.nome_exibicao }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    <div class="flex-grow-0 ml-1" *ngIf="podeEnviar">
+      <p-fileUpload
+        #pfp
+        mode="basic"
+        name="imagem[]"
+        accept="image/*"
+        [customUpload]="true"
+        (uploadHandler)="uploadHandler($event)"
+        [auto]="true"
+        [disabled]="vm.carregando"
+      ></p-fileUpload>
+    </div>
+    <div class="flex-grow-0 ml-1" *ngIf="podeVisualizar">
+      <button
+        pButton
+        icon="pi pi-eye"
+        pTooltip="Visualizar"
+        (click)="openModal()"
+        [disabled]="!model || vm.carregando"
+      ></button>
+    </div>
+  </div>
+</ng-container>
+
+<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '80vw' }">
+  <div class="flex flex-column">
+    <div class="flex w-full justify-content-end align-items-center mb-4">
+      <button
+        pButton
+        [icon]="darkMode ? 'fad fa-sun' : 'fad fa-moon'"
+        class="mr-1"
+        (click)="darkMode = !darkMode"
+      ></button>
+      <button
+        pButton
+        icon="fad fa-search-plus"
+        (click)="zoom = zoom + 0.1"
+        class="mr-1"
+      ></button>
+      <button
+        pButton
+        icon="fad fa-search-minus"
+        (click)="zoom = zoom > 1 ? zoom - 0.1 : 1"
+        class="mr-1"
+      ></button>
+    </div>
+    <div
+      *ngIf="model"
+      [ngClass]="{ 'surface-700': darkMode }"
+      class="flex justify-content-center p-5"
+    >
+      <img
+        [IdImage]="model"
+        *ngIf="model"
+        [style]="{ transform: 'scale(' + zoom + ')' }"
+        class="max-h-20rem max-w-full"
+        [ngClass]="{ 'surface-700': darkMode }"
+      />
+    </div>
+  </div>
+</p-dialog>

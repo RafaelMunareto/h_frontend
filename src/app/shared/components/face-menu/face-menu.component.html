@@ -1,0 +1,112 @@
+<app-loading-caixa
+  texto="Carregando Menu..."
+  width="100%"
+  height="658px"
+  *ngIf="carregando$ | async; else buildMenu"
+>
+</app-loading-caixa>
+<ng-template #buildMenu>
+  <div class="w-full" [class.card-like]="isCardLike">
+    <ng-container>
+      <div class="w-full flex pt-2" [class.mb-2]="carregando$ | async">
+        <div class="flex-grow-0">
+          <p-button
+            [routerLink]="['/', 'face-caixa']"
+            class="mr-2"
+            id="home"
+            pTooltip="Voltar à página inicial."
+            icon="fas fa-home-alt"
+          >
+          </p-button>
+        </div>
+        <div class="flex-grow-1">
+          <span class="p-input-icon-left w-full">
+            <i *ngIf="carregando$ | async" class="pi pi-spin pi-spinner"></i>
+            <i *ngIf="!(carregando$ | async)" class="pi pi-search"></i>
+            <input
+              type="text"
+              class="w-full"
+              pInputText
+              placeholder="Buscar item..."
+              [ngModel]="pesquisa$ | async"
+              (ngModelChange)="pesquisa$.next($event)"
+            />
+          </span>
+        </div>
+        <div class="flex-grow-0 d-flex ml-1">
+          <p-button
+            (click)="changeViewMode()"
+            id="changeViewMenu"
+            [pTooltip]="iconMode ? 'Exibir em lista' : 'Exibir como ícones'"
+            [icon]="iconMode ? 'fas fa-list' : 'fas fa-th'"
+          >
+          </p-button>
+          <a
+            href="http://redevarejo.caixa/frontend/#/administrativo/ferramentas/itens"
+          >
+            <p-button
+              icon="pi pi-pencil"
+              class="ml-1"
+              pTooltip="Editar"
+              *ngIf="gesun$ | async"
+            ></p-button>
+          </a>
+        </div>
+      </div>
+
+      <!-- Nenhum registro -->
+
+      <div *ngIf="menu$ | async as menu">
+        <div
+          class="w-full no-menu-itens"
+          *ngIf="
+            (pesquisa$ | async)?.length &&
+            !(carregandoPesquisa$ | async) &&
+            !menu.length
+          "
+        >
+          <i class="fad fa-sad-tear"></i>
+          <span
+            >Nenhum sistema encontrado para o(s) termo(s) pesquisado(s). Tente
+            alterar o termo de busca.</span
+          >
+          <span class="gesoon-link" (click)="searchIt()">
+            Clique aqui para pesquisar '<span>{{ pesquisa$ | async }}</span
+            >' no Gesoon.
+          </span>
+        </div>
+
+        <app-loading-caixa
+          texto="Pesquisando..."
+          width="100%"
+          height="658px"
+          *ngIf="carregandoPesquisa$ | async; else menuFinal"
+        ></app-loading-caixa>
+        <ng-template #menuFinal>
+          <div *ngFor="let grupo of menu; trackBy: getGroupId">
+            <app-grupo
+              [nome]="grupo.nome"
+              [icone]="grupo.icone"
+              [itens]="grupo.itens"
+              (addToFavorites)="addToFavorites($event)"
+              (removeFromFavorites)="removeFromFavorites($event)"
+              [favoritos]="(favoritos$ | async) ?? []"
+              [searching]="isLoadingSearch"
+              [search]="(pesquisa$ | async) ?? ''"
+              [iconMode]="iconMode"
+              [isExpanded]="isExpandAll"
+            ></app-grupo>
+          </div>
+        </ng-template>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
+<p-dialog
+  [(visible)]="dialogEditarVisivel"
+  header="Editar Menu"
+  [style]="{ width: '80vw' }"
+  [modal]="true"
+  *ngIf="dialogEditarVisivel"
+>
+</p-dialog>

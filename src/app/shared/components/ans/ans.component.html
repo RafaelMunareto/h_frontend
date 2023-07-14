@@ -1,0 +1,58 @@
+<p-dialog header="Assinatura do Termo" [(visible)]="confirmacaoModal" [modal]="true" [style]="{width: '75vw'}" [maximizable]="false"
+    [draggable]="false" [resizable]="false" (onHide)="cancelDialog()">
+    <p-accordion [activeIndex]="0" styleClass="mt-2">
+      <p-accordionTab header="Termo de Segurança de dados - Com a assinatura deste termo será liberado o acesso do usuário às bases analíticas.">
+        <div class="descricao" >
+          <div [innerHTML]="htmlAns">
+
+          </div>
+        </div>
+      </p-accordionTab>
+      <div class="espaco1 d-flex-column justify-content-center">
+        <div class="d-flex flex-column">
+          <div> Declaro que li e concordo. </div><br>
+          <span> <b>Login</b>: <span class="ml-2">{{ ans.matricula }}</span></span>
+          <br>
+          <span> <b>Senha</b>: <input type="password" pInputText [(ngModel)]="pass" (keypress)="$event.key == 'Enter' ? postANS() : ''" class="ml-2"></span>
+
+        </div>
+        <div class="d-flex flex-row mt-4 justify-content-center">
+          <button pButton pRipple type="button" label="Confirmar" class="p-button-raised mr-3" [disabled]="this.loading" [icon]="!this.loading ? 'pi pi-check' : 'pi pi-spin pi-spinner'" (click)="postANS()"></button>
+          <button pButton pRipple type="button" label="Cancelar" class="p-button-danger"  [disabled]="this.loading" (click)="cancelDialog()" [icon]="!this.loading ? 'pi pi-times' : 'pi pi-spin pi-spinner'"></button>
+        </div>
+      </div>
+  </p-accordion>
+
+</p-dialog>
+
+<ng-container *ngIf="mode!='content'; else contentMode">
+  <div *ngIf="botao">
+    <button pButton pRipple type="button" (click)="btnClick()" class="p-button-raised" styleClass="p-button-lg"
+      [style]="styleClass" label="Assinar Termo">
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #contentMode>
+
+
+  <app-loading-caixa width="100%" height="350px" *ngIf="renderAnalitic == true && loadingAssinatura; else resAss"></app-loading-caixa>
+  <ng-template #resAss>
+
+    <ng-container *ngIf="!ultimaAnsAssinada && renderAnalitic!=undefined">
+
+      <div class="w100 d-flex align-items-center justify-content-center content-box">
+        <span style="font-size: 200%; color: #adadad;"><i class="far fa-exclamation-triangle"></i></span>
+        <p>Para visualizar dados analíticos, é necessário assinar o Termo de Segurança de Dados, de acordo com a Lei Geral de Proteção de Dados Pessoais (LGPD).</p>
+        <button pButton pRipple type="button" (click)="btnClick()" class="p-button-raised" styleClass="p-button-lg"
+          [style]="styleClass" label="Assinar Termo">
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="ultimaAnsAssinada && renderAnalitic == true">
+      <ng-content></ng-content>
+    </ng-container>
+  </ng-template>
+
+</ng-template>
+

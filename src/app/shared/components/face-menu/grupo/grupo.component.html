@@ -1,0 +1,38 @@
+<div class="w-full">
+  <div (click)="toggle()" class="w-full menu-title flex align-items-center">
+    <div class="icone-grupo">
+      <i [class]="icone"></i>
+    </div>
+    <div class="flex-grow-1">
+      {{nome}}
+    </div>
+    <div class="flex-grow-0">
+      <span *ngIf="!alwaysOpen" #arrow class="menu-expander" [class]="{ active: isExpanded }">
+        <i class="fad fa-angle-double-down"></i
+      ></span>
+    </div>
+  </div>
+  <hr class="menu-hr" />
+  <div [style]="estiloListaIcones" class="menu-expandable">
+    <div #expDest id="mn_destaques" [class.flex-n-wrap]="iconMode">
+      <div  *ngIf="itensOrdenados.length; else vazio">
+        <div [class.item-row]="!iconMode" [class.w33]="iconMode" *ngFor="let item of itensOrdenados ; trackBy: getItemId">
+          <app-item
+            [item]="item"
+            (addToFavorites)="addToFavorites.emit($event)"
+            (removeFromFavorites)="removeFromFavorites.emit($event)"
+            [ehFavoritos]="ehFavoritos"
+            [ehDestaques]="ehDestaques"
+            [favoritos]="favoritos"
+            [iconMode]="iconMode"
+          ></app-item>
+        </div>
+      </div>
+      <ng-template #vazio>
+        <div class="w-full flex justify-content-center text-sm">
+          Nenhum item marcado como favorito
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

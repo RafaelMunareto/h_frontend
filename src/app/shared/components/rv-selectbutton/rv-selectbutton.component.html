@@ -1,0 +1,19 @@
+<div class="p-3">
+  <h1>Select Button</h1>
+
+  <h5>Single Selection</h5>
+  <p-selectButton class="p-selectbutton-sm" [options]="stateOptions" (ngModel)="value1" optionLabel="label"
+    optionValue="value"></p-selectButton>
+
+  <h5>Multiple Selection</h5>
+  <p-selectButton [options]="paymentOptions" (ngModel)="value2" [multiple]="multiple" optionLabel="name"
+    optionValue="value"></p-selectButton>
+
+  <h5>Custom Template</h5>
+  <p-selectButton class="p-selectbutton-sm" [options]="justifyOptions" (ngModel)="value3" optionLabel="icon">
+    <ng-template let-item>
+      <i [class]="item.icon"></i>
+    </ng-template>
+  </p-selectButton>
+
+</div>

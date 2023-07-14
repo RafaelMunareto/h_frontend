@@ -1,0 +1,26 @@
+<div class="flex gap-2 align-items-center">
+  <label for="" class="flex-grow-0 m-0 p-0 mr-2" *ngIf="showLabel"
+    >Matricula</label
+  >
+
+  <div *ngIf="carregando$ | async; else elseBlock" class="w-full">
+    <p-skeleton width="100%" height="2rem"></p-skeleton>
+  </div>
+  <ng-template #elseBlock>
+    <p-autoComplete
+    #ac
+      [ngModel]="pesquisa$ | async"
+      appendTo="body"
+      styleClass="block"
+      [class]="'flex-grow-1 ' + className"
+      inputStyleClass="w-full"
+      [suggestions]="(lista$ | async) ?? []"
+      (completeMethod)="mudaValorPesquisa($event)"
+      field="matriculaNome"
+      (onSelect)="onChange.emit($event.matricula)"
+      [disabled]="disabled"
+      [showClear]="showClear"
+      (onClear)="onClearHandler()"
+    ></p-autoComplete>
+  </ng-template>
+</div>

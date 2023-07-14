@@ -1,0 +1,68 @@
+<div class="flex align-items-center">
+  <div class="flex-grow-1">
+    <ng-container *ngIf="!floatLabel">
+      <p-autoComplete
+        [ngModel]="selecionado$ | async"
+        [suggestions]="(sugestoes$ | async) ?? []"
+        (completeMethod)="setPesquisa($event)"
+        field="nome"
+        styleClass="w-full"
+        inputStyleClass="w-full"
+        appendTo="body"
+        (onSelect)="setSelecionado($event.classe)"
+        (onFocus)="setFocus(true)"
+        (onBlur)="setFocus(false)"
+      >
+        <ng-template pTemplate="item" let-icone>
+          <div class="w-full flex align-items-center">
+            <div class="flex-grow-0">
+              <i [class]="icone.classe"></i>
+            </div>
+            <div class="flex-grow-1 ml-4 text-lg text-truncate">
+              {{ icone.nome }}
+            </div>
+          </div>
+        </ng-template>
+      </p-autoComplete>
+    </ng-container>
+    <ng-container *ngIf="floatLabel">
+      <div class="mt-5">
+        <span class="p-float-label">
+          <p-autoComplete
+            [ngModel]="selecionado$ | async"
+            [suggestions]="(sugestoes$ | async) ?? []"
+            (completeMethod)="setPesquisa($event)"
+            field="nome"
+            styleClass="w-full"
+            inputStyleClass="w-full"
+            appendTo="body"
+            (onSelect)="setSelecionado($event.classe)"
+            (onFocus)="setFocus(true)"
+            (onBlur)="setFocus(false)"
+          >
+            <ng-template pTemplate="item" let-icone>
+              <div class="w-full flex align-items-center">
+                <div class="flex-grow-0">
+                  <i [class]="icone.classe"></i>
+                </div>
+                <div class="flex-grow-1 ml-4 text-lg text-truncate">
+                  {{ icone.nome }}
+                </div>
+              </div>
+            </ng-template>
+          </p-autoComplete>
+          <label>{{ label }}</label>
+        </span>
+      </div>
+    </ng-container>
+  </div>
+  <div
+    class="preview-icone flex justify-content-center align-items-center pl-2 py-1 mr-1"
+    [ngClass]="{ active: focus, 'preview-float-label': floatLabel }"
+  >
+    <i
+      [class]="selecionado.classe"
+      *ngIf="selecionado$ | async as selecionado"
+    ></i>
+  </div>
+</div>

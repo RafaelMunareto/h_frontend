@@ -1,0 +1,45 @@
+<form [formGroup]="form" class="w-full flex flex-column">
+  <p-scrollPanel [style]="{ width: '100%', height: '336px' }">
+    <div class="field">
+      <label for="nome">Nome</label>
+      <input
+        id="nome"
+        type="text"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        pInputText
+        formFieldName="no_grupo"
+      />
+    </div>
+
+    <div class="field">
+      <label for="descricao">Descrição</label>
+      <textarea
+        id="descricao"
+        type="text"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        pInputTextArea
+        formFieldName="no_descricao"
+      ></textarea>
+    </div>
+    <div class="flex">
+      <div class="field flex-grow-1 mr-1">
+        <label for="descricao">Exibição</label>
+        <p-dropdown
+          styleClass="w-full"
+          [disabled]="true"
+          [options]="exibicoes"
+          optionLabel="no_exibicao"
+          optionValue="id"
+        ></p-dropdown>
+      </div>
+      <div class="field flex-grow-1 mr-1">
+        <label for="descricao">Ícone</label>
+          <app-autocomplete-icones [valorInicial]="grupo?.icone"></app-autocomplete-icones>
+      </div>
+      <div class="field flex-grow-1">
+        <label for="descricao">Restrito GESUN</label>
+        <p-toggleButton styleClass="w-full" label="Não"></p-toggleButton>
+      </div>
+    </div>
+  </p-scrollPanel>
+</form>

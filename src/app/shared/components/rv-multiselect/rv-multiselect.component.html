@@ -1,0 +1,33 @@
+<div class="p-3">
+  <h1>Multiselect</h1>
+
+  <div class="card">
+    <h5>Template Mode</h5>
+    <p-multiSelect [options]="cities" (ngModel)="selectedCities1" defaultLabel="Select a City" optionLabel="name"
+      selectedItemsLabel="{0} items selected"></p-multiSelect>
+
+    <h5>Elipsis Mode</h5>
+    <p-multiSelect [options]="cities" (ngModel)="selectedCities2" defaultLabel="Select a City" optionLabel="name">
+    </p-multiSelect>
+
+    <h5>Chips</h5>
+    <p-multiSelect [options]="cities" (ngModel)="selectedCities3" defaultLabel="Select a City" optionLabel="name"
+      display="chip"></p-multiSelect>
+
+    <h5>Grouped</h5>
+    <p-multiSelect class="p-multiselect-sm" [options]="groupedCities" [group]="true" (ngModel)="selectedCities4"
+      defaultLabel="Select a City" scrollHeight="250px" display="chip">
+      <ng-template let-group pTemplate="group">
+        <div class="flex align-items-center">
+          <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + group.value"
+            style="width: 20px" />
+          <span>{{group.label}}</span>
+        </div>
+      </ng-template>
+    </p-multiSelect>
+
+
+
+  </div>
+
+</div>

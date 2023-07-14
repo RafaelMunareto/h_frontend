@@ -1,0 +1,168 @@
+<div class="mt-2">
+  <p-toolbar styleClass="gap-5">
+    <div class="p-toolbar-group-left align-items-center">
+      <div class="flex align-items-center">
+        <div class="flex-grow-0">
+          <label for="" class="mt-1">Tipo</label>
+        </div>
+
+        <div class="flex-grow-1 ml-2">
+          <p-dropdown
+            [options]="(exibicoes$ | async) ?? []"
+            optionLabel="nome"
+            styleClass="w-200px"
+            [(ngModel)]="exibicaoSelecionada"
+            appendTo="body"
+            [autoDisplayFirst]="false"
+          ></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <div class="p-toolbar-group-right flex ml-2 flex-grow-1 align-items-center">
+      <div class="flex-grow-1 flex align-items-center">
+        <div class="flex align-items-center w-full">
+          <div class="flex-grow-0 ml-2">
+            <label for="" class="mt-1">Itens</label>
+          </div>
+          <div class="flex-grow-1 ml-2">
+            <p-dropdown
+              [options]="(itensDisponiveis$ | async) ?? []"
+              optionLabel="nome"
+              styleClass="w-full dropdown-itens-editor-face-menu"
+              [disabled]="!grupoSelecionado"
+              class="w-full"
+              appendTo="body"
+              [autoDisplayFirst]="false"
+              [filter]="true"
+              [showClear]="true"
+              [(ngModel)]="itemSelecionado"
+            >
+              <ng-template pTemplate="selectedItem">
+                <app-template-item
+                  [item]="itemSelecionado"
+                  [tamanho]="20"
+                ></app-template-item>
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                <app-template-item [item]="item"></app-template-item>
+              </ng-template>
+            </p-dropdown>
+          </div>
+        </div>
+      </div>
+      <div class="flex-grow-0 flex">
+        <button
+          pButton
+          icon="pi pi-plus"
+          pTooltip="Adicionar item ao Grupo"
+          class="ml-2"
+          [disabled]="!grupoSelecionado"
+          (click)="adicionaItem()"
+        ></button>
+        <button
+          pButton
+          icon="pi pi-pencil"
+          pTooltip="Editar item"
+          class="ml-2"
+          [disabled]="!grupoSelecionado"
+        ></button>
+        <button
+          pButton
+          icon="fas fa-file"
+          class="ml-2"
+          pTooltip="Criar novo item"
+        ></button>
+      </div>
+    </div>
+  </p-toolbar>
+  <div class="mt-2 w-full flex">
+    <div class="col-5">
+      <div *ngIf="carregando$ | async">
+        <p-skeleton
+          height="36px"
+          width="100%"
+          styleClass="mb-1"
+          *ngFor="let item of [].constructor(10)"
+        ></p-skeleton>
+      </div>
+      <p-orderList
+        *ngIf="!(carregando$ | async)"
+        [value]="(listaGrupos$ | async) ?? []"
+        styleClass="w-full"
+        [dragdrop]="true"
+        [listStyle]="{ height: '420px', width: '100%' }"
+        [(selection)]="grupoSelecionado"
+        [trackBy]="trackByGrupo"
+      >
+        <ng-template let-grupo pTemplate="grupo" >
+          <app-template-grupo
+            [grupo]="grupo"
+            [tamanho]="36"
+            [podeDeletar]="true"
+            (onDeleteItem)="deleteGrupo($event)"
+          ></app-template-grupo>
+        </ng-template>
+      </p-orderList>
+    </div>
+    <div class="col-7">
+      <p-skeleton
+        *ngIf="carregando$ | async; else carregado"
+        width="100%"
+        height="420px"
+      ></p-skeleton>
+      <ng-template #carregado>
+        <div
+          class="w-100 flex justify-content-center align-items-center"
+          [style]="{ height: '420px' }"
+          *ngIf="!temGrupoSelecionado"
+        >
+          <h5>Selecione um grupo para exibir os itens</h5>
+        </div>
+        <p-tabView *ngIf="temGrupoSelecionado">
+          <p-tabPanel header="Grupo">
+            <app-form-grupo [grupo]="grupoSelecionado[0]" [exibicoes]="(exibicoes$ | async)??[]"  ></app-form-grupo>
+
+          </p-tabPanel>
+          <p-tabPanel header="Itens">
+            <p-orderList
+              [value]="(itensGrupoSelecionado$ | async) || []"
+              styleClass="w-full"
+              [dragdrop]="true"
+              [listStyle]="{ height: '336px', width: '100%' }"
+              (onReorder)="this.temAlteracao = true"
+            >
+              <ng-template let-item pTemplate="item">
+                <app-template-item
+                  [item]="item"
+                  [tamanho]="36"
+                  [podeDeletar]="true"
+                  (onDeleteItem)="deleteItem($event)"
+                ></app-template-item>
+              </ng-template>
+            </p-orderList>
+          </p-tabPanel>
+        </p-tabView>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<p-toolbar styleClass="mt-1">
+  <div class="p-toolbar-group-left">
+    <button
+      pButton
+      icon="fas fa-file"
+      label="Criar Grupo"
+      [disabled]="!exibicaoSelecionada"
+      [loading]="(salvando$ | async) ?? false"
+    ></button>
+  </div>
+  <div class="p-toolbar-group-right">
+    <button
+      pButton
+      icon="fas fa-save"
+      label="Salvar Alteraçoes"
+      [disabled]="!temAlteracao || !temGrupoSelecionado"
+      [loading]="(salvando$ | async) ?? false"
+    ></button>
+  </div>
+</p-toolbar>

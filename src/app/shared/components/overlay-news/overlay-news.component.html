@@ -1,0 +1,50 @@
+<i
+  [class]="icon + ' mr-3 cursor-pointer'"
+  [style]="'float: right; font-size: 24px; padding-top: 9px;color:' + iColor"
+  (click)="noticias_over.toggle($event); carregaNoticias(noticias_over)"
+>
+</i>
+<p-overlayPanel
+  #noticias_over
+  [showTransitionOptions]="showTransition"
+  [hideTransitionOptions]="hideTransition"
+>
+  <ng-template pTemplate>
+    <div class="d-flex flex-column" style="width: 500px; min-width: 500px;">
+      <div *ngIf="!showNoticias; else notCarregandoNoticias">
+        <div class="container-fluid w90 mt-5 mb-5 d-flex justify-content-center">
+          <img
+            src="https://www.novoredevarejo.caixa/api/upload/41484"
+            alt="REDE VAREJO"
+            class="thumbnail pulse-brilho animated-image"
+          />
+        </div>
+      </div>
+
+      <ng-template #notCarregandoNoticias>
+        <p class="mb-3 titulo_noticia">{{ tituloNews }}</p>
+
+        <p-timeline *ngIf="noticias.length > 0" [value]="noticias">
+          <ng-template pTemplate="content" let-noticia>
+            <div style="width: 100%" class="d-flex justify-content-between">
+              <h5 class="titulo_mensagem_noticia">{{ noticia.titulo }}</h5>
+              <h6 class="data_noticia">
+                {{ noticia.data_hora_envio | date : 'dd/MM/yyyy' }}
+              </h6>
+            </div>
+
+            <p class="texto_noticia">
+              {{ noticia.mensagem }}
+            </p>
+          </ng-template>
+        </p-timeline>
+
+        <ng-container *ngIf="noticias.length <= 0">
+          <div class="w100 text-center" style="text-shadow: none">
+            <h6>Não há notícias para exibir.</h6>
+          </div>
+        </ng-container>
+      </ng-template>
+    </div>
+  </ng-template>
+</p-overlayPanel>

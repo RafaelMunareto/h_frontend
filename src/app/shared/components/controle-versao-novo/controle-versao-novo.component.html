@@ -1,0 +1,58 @@
+<div
+  *ngIf="tagVersaoMaisRecente$ | async as tag"
+  (click)="visivel = true"
+  class="text-sm texto-versao-atual cursor-pointer"
+>
+  v {{ tag }}
+</div>
+<p-dialog
+  [(visible)]="visivel"
+  [modal]="true"
+  [style]="{ width: '70vw' }"
+  (onHide)="closeModal()"
+  [position]="'top'"
+>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center">
+      <div class="p-dialog-title mr-5">Controle de Versão</div>
+      <div>
+        <p-dropdown
+          class="mr-2"
+          [style]="{ width: '300px' }"
+          [options]="listaSistema"
+          [filter]="true"
+          [filterBy]="'label'"
+          (onChange)="changeSistema($event)"
+        ></p-dropdown>
+      </div>
+    </div>
+  </ng-template>
+  <ul *ngIf="listaAgrupada$ | async as lista" class="list-none p-0">
+    <li *ngFor="let versao of lista" class="flex flex-column">
+      <div
+        class="flex titulo text-bold text-orange-600 border-bottom-2 border-color-orange-600 border-style-solid mb-2"
+      >
+        <div class="flex-grow-0 mr-1">{{ versao.tag_versao }}:</div>
+        <div class="flex-grow-1">{{ versao.no_descricao }}</div>
+        <div class="flex-grow-0">{{ versao.created_at | date: 'dd/MM/Y' }}</div>
+      </div>
+      <ul class="list-none pl-2">
+        <li *ngFor="let item of versao.lista" class="text-sm pb-2">
+          <i
+            class="fad fa-angle-right mr-1"
+            [ngClass]="{
+              'text-orange-600': item.tipo === 3,
+              'text-blue-600': item.tipo === 2
+            }"
+          ></i>
+          {{ item.sistema + ' - ' + item.no_descricao }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ng-template pTemplate="footer" *ngIf="gesun$ | async">
+    <div class="flex justify-content-end mt-2">
+      <button pButton icon="fab fa-git-alt" label="Gerenciar" disabled></button>
+    </div>
+  </ng-template>
+</p-dialog>

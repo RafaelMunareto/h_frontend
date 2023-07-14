@@ -1,0 +1,38 @@
+.card-like
+    background-color: white
+    border: solid 1px #ced4da
+    //box-shadow: 1px 2px 6px 1px #00000026
+    padding: 6px 15px 20px
+    box-shadow: 0px 3px 5px 0px #00000029
+    border-radius: 6px
+
+.no-menu-itens
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    min-height: 200px
+    font-size: 95%
+    color: #848484
+    text-align: center
+    > i
+        font-size: 250%
+        color: #de5c06
+        margin-bottom: 10px
+
+.gesoon-link
+    margin-top: 15px
+    font-weight: 600
+    color: #0d8ddc
+    cursor: pointer
+    &:hover
+        color: #0b76b7
+    & > span
+        color: #e87122
+
+.menu-group-items:nth-child(4n)
+    margin-right: 0px !important
+
+@media only screen and (max-width: 1250px)
+    .menu-group-items:nth-child(4n)
+        margin-right: 4px !important

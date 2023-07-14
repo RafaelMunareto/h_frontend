@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center" *ngIf="matricula; else notPhoto">
+  <img
+    [ngClass]="paddingImagem ? 'img-thumbnail' : 'img-thumbnail-sem-padding'"
+    [class]="retornaClass()"
+    [appAvatarEmpregadoSrc]="matricula"
+    onAESError="assets/img/outros/avatar.png"
+  />
+</div>
+
+<ng-template #notPhoto>
+  <div class="d-flex justify-content-center">
+    <img
+      [ngClass]="paddingImagem ? 'img-thumbnail' : 'img-thumbnail-sem-padding'"
+      [class]="retornaClass()"
+      src="assets/img/outros/avatar.png"
+    />
+  </div>
+</ng-template>

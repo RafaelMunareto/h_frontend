@@ -1,0 +1,95 @@
+.header-container
+  min-height: 125px
+  background-color: #e6edf5
+
+.header-inferior
+  background: #f9f9f9
+  box-shadow: 0 3px 7px 2px #00000029
+  height: 50px
+
+.container-logo-texto
+  margin-left: 97px
+
+.logo-rede-varejo
+  top: 10px
+  left: 10px
+  height: 90px
+
+.logo-texto-rede-varejo
+  height: 50px
+  &:focus
+    outline: none
+
+.gesoon-logo
+  height: 24px
+  margin-right: 10px
+
+.gesoon-search
+  width: 300px
+
+.logo-gesun
+  height: 30px
+
+#version-text
+  position: absolute
+  top: 44px
+  padding-left: 5px
+  color: white
+
+//Temas
+.header-container > div:not(.msg-holder)
+  height: 60px
+
+#header-0
+  background: linear-gradient(to right, #0470b3,#ffffff)
+
+#header-3
+  background: linear-gradient(to right, #a50067,#f2f2f2ff)
+
+#header-5
+  hackground: linear-gradient(to right, #01385A, #0077bf)
+
+#header-8
+  background: linear-gradient(to right, #5e2879,#f2f2f2ff)
+
+#header-9
+  background: linear-gradient(to right, #0470b3,#ffffff)
+  border-bottom: 5px solid #e6b81f
+
+#header-10
+  background: linear-gradient(to right, #a50067,#f2f2f2ff)
+
+#header-11
+  background: linear-gradient(to right, #375fa1,#ffffff)
+
+#header-12
+  background: linear-gradient(to right, #e57000,#ff7d019e)
+
+//Show Message
+.msg-holder
+  opacity: 0
+  max-height: 0
+  transition: opacity 2s, max-height 2s
+  &.showit
+    max-height: 100% !important
+    opacity: 1 !important
+
+.show-msg
+  display: flex
+  justify-content: space-between
+  align-items: center
+  background-color: #d4efff
+  border: solid 1px #bfd2e2
+  .msg-ico
+    font-size: 180%
+    padding: 10px 15px
+    color: #335f79
+  .msg-buttons
+    display: flex
+    flex-direction: column
+    white-space: nowrap
+    padding: 0 10px
+  .msg-text
+    color: #4f677b
+    font-size: 102%
+    text-align: justify

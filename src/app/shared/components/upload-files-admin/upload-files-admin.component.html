@@ -1,0 +1,61 @@
+<ng-container *ngIf="tipo == 'overlay'">
+  <i
+    [class]="icon + ' cursor-pointer'"
+    [style]="'font-size: 24px; padding-top: 9px;color:' + iColor"
+    (click)="arquivos.toggle($event); carregaArquivos(arquivos)"
+  >
+  </i>
+  <p-overlayPanel
+    styleClass="overlay_upload_admin"
+    #arquivos
+    [showTransitionOptions]="showTransition"
+    [hideTransitionOptions]="hideTransition"
+    appendTo="body"
+  >
+    <ng-template pTemplate>
+      <div style="width: 500px; min-width: 500px;">      
+        <div class="d-flex flex-column">
+          <div *ngIf="!showArquivos; else notCarregandoArquivos">
+            <div class="container-fluid w90 mt-5 mb-5 d-flex justify-content-center">
+              <img
+                src="https://www.novoredevarejo.caixa/api/upload/41484"
+                alt="REDE VAREJO"
+                class="thumbnail pulse-brilho animated-image"
+              />
+            </div>
+          </div>
+
+          <ng-template #notCarregandoArquivos>
+            <p class="mb-3 titulo_upload_admin">{{ titulo }}</p>
+
+            <p-timeline *ngIf="dados_upload!.length > 0" [value]="dados_upload!">
+              <ng-template pTemplate="content" let-event>
+                <div
+                  style="width: 100%"
+                  class="d-flex justify-content-between"
+                  (click)="abrirArquivo(event.id)"
+                >
+                  <h5 class="titulo_mensagem_upload_admin cursor-pointer">
+                    {{ event.nome_exibicao }}
+                  </h5>
+                  <h6 class="data_upload_admin">
+                    {{ event.data_hora_envio | date: "dd/MM/YYYY" }}
+                  </h6>
+                </div>
+                <p class="texto_upload_admin">
+                  {{ event.descricao }}
+                </p>
+              </ng-template>
+            </p-timeline>
+
+            <ng-container *ngIf="dados_upload!.length <= 0">
+              <div class="w100 text-center" style="text-shadow: none">
+                <h6>Não há arquivos para download.</h6>
+              </div>
+            </ng-container>
+          </ng-template>
+        </div>
+      </div>
+    </ng-template>
+  </p-overlayPanel>
+</ng-container>

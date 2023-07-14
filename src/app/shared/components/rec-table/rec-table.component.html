@@ -1,0 +1,29 @@
+<!-- Loading -->
+<app-loading-caixa
+  width="100%"
+  height="350px"
+  *ngIf="loadingTable; else carregaTable"
+></app-loading-caixa>
+
+<ng-template #carregaTable>
+
+  <p-table [value]="data.widgetData" class="tbFonteMenor" styleClass="w100 p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let hg of data.headGroups" [attr.colspan]="hg.colspan" 
+          [attr.rowspan]="hg.rowspan" [class]="hg.class">
+          {{ hg.name }}
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let h of data.headers" [class]="h.class">{{h.name}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-r>
+      <app-rec-tr style="display: contents" [dados]="r" [tdFields]="data.tdFields" 
+        (carregaAnalitico)="eventoCarregaAnalitico($event)" (carregaSubordinada)="eventoCarregaSubordinada($event)">
+      </app-rec-tr>
+    </ng-template>
+  </p-table>
+
+</ng-template>

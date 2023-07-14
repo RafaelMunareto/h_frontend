@@ -1,0 +1,59 @@
+<tr class="data-row" #thisTr>
+  <td *ngFor="let t of tdFields; let ix = index" 
+    [class]="'background' + nivel + (ix == 0 ? ' padding'+nivel : '') + ' ' +  t.class" 
+    (click)="eventoCarregaSubordinada({ 
+      nu_unidade: dados.nu_unidade, evt: $event,
+      no_unidade: dados.no_unidade, pdAcessar: dados.pode_acessar,
+      trRef: thisTr, tipo: dados.tipo
+    })"
+    [style]="{
+      'padding-left':
+        !dados.pode_acessar && nivel == 4 && ix == 0 ? '2.8rem !important' : 'none',
+      'border-right': 'solid 2px #efefef',
+      cursor: 'pointer'
+    }">
+    <ng-container *ngIf="ix == 0">
+      <button
+        *ngIf="dados.tipo != 'AG' && dados.tipo != 'PA'"
+        pButton
+        pRipple
+        type="button"
+        [icon]="dados.subordinadas ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+        class="p-button-rounded p-button-text p-button-secondary"
+        (click)="eventoCarregaSubordinada({ 
+            nu_unidade: dados.nu_unidade, evt: $event, 
+            no_unidade: dados.no_unidade, pdAcessar: dados.pode_acessar,
+            trRef: thisTr, tipo: dados.tipo
+        })"
+        pTooltip="Listar Subordinadas"
+      ></button>
+      <button
+        *ngIf="dados.pode_acessar && (dados.tipo == 'AG' || dados.tipo == 'PA')"
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-search-plus"
+        class="p-button-rounded p-button-text p-button-secondary"
+        (click)="eventoCarregaAnalitico({
+          nu_unidade: dados.nu_unidade, evt: $event, 
+          no_unidade: dados.no_unidade, trRef: thisTr
+        })"
+        pTooltip="Listar Analítico"
+      ></button>
+    </ng-container>
+    {{ (t.pipe != "" ? (dados[t.name] | NumDataType:t.pipe) : dados[t.name] )}}
+  </td>
+</tr>
+<ng-container *ngIf="dados.subordinadas">  
+  <ng-container *ngFor="let dado of dados.subordinadas">
+    <app-rec-tr
+      style="display: contents"
+      [dados]="dado"
+      [tdFields]="tdFields"
+      [showAll]="showAll"
+      [nivel]="nivel + 1"
+      (carregaSubordinada)="eventoCarregaSubordinada($event)"
+      (carregaAnalitico)="eventoCarregaAnalitico($event)"
+    ></app-rec-tr>
+  </ng-container>
+</ng-container>

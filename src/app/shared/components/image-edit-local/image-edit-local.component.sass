@@ -1,0 +1,60 @@
+.edit-button
+    background-color: white
+    font-size: 130%
+    border-radius: 50%
+    width: 40px !important
+    text-align: center
+    border: solid 3px #467ee4
+    box-shadow: 1px 2px 4px 2px #545454
+    position: absolute
+    top: 20px
+    right: 20px
+    height: 40px
+    padding: 1px
+    transition: opacity 0.4s, color 0.3s
+    opacity: 0
+    cursor: pointer
+    color: #0571b3
+    &.active
+        opacity: 1
+    &:hover
+        opacity: 1
+        color: #d67a05
+.modal-img
+    background: #dcdcdc
+.edit-border
+    border: dashed 2px #08a21c
+.move-cursor
+    cursor: move
+
+.modal-loading-new
+    position: absolute
+    width: 100%
+    background: #ffffffcc
+    height: 100%
+    z-index: 99
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    font-size: 140%
+    & > i
+        font-size: 130%
+        color: #0066a5
+    span
+        font-size: 60%
+        margin-top: 20px
+        color: #444444
+
+.image-size-badge
+    position: absolute
+    bottom: 6px
+    background-color: #ddd
+    right: 5px
+    padding: 2px 5px
+    border-radius: 4px
+    font-size: 90%
+    opacity: 0
+    transition: opacity 0.4s
+    &.active
+        opacity: 1

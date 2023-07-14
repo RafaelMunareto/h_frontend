@@ -1,0 +1,121 @@
+<div style="position: relative" (mouseenter)="isHovering=true" (mouseleave)="isHovering=false">
+
+  <div
+    *ngIf="isBoss"
+    (click)="upFile.click()"
+    class="edit-button"
+    style="margin: -10px !important; font-size: 138%; z-index: 200;"
+    [class]="{ active: isHovering }"
+  >
+    <i class="fas fa-pencil"></i>
+  </div>
+
+  <span *ngIf="isBoss" class="image-size-badge" style="z-index:199;" [class]="{ active: isHovering }">
+    {{maxWidth}} x {{maxHeight}}
+  </span>
+  
+  <div class="modal-loading-new" *ngIf="uploading">
+    <i class="fad fa-spinner-third fa-spin"></i>
+    <span> Aguarde... </span>
+  </div>
+
+  <input
+    #upFile
+    style="display: none"
+    type="file"
+    accept="image/*"
+    (change)="previewFile($event, imgDragDiv)"
+    name="inputFile"
+  />
+
+  <!-- <div class="w100" [class.edit-border]="isBoss && (upFileType == 'img' || isHovering == true)">
+  </div> -->
+
+  <div
+    #imgDragDiv
+    class="modal-img mb-1"
+    [class]="{'move-cursor': hasFile && upFileType == 'img'}" 
+    (mousedown)="toggleDragging($event, false)"
+    (mouseup)="toggleDragging($event, true)"
+    (mouseleave)="toggleDragging($event, true)"
+    (wheel)="zoomIt($event, imgDragDiv)"
+    [style]="{
+      'background-image': 'url(\'' + tempImg + '\')',
+      'background-position': '0px 0px',
+      'background-repeat': 'no-repeat',
+      'height' : maxHeight+'px',
+      'width' : maxWidth+'px'
+    }">
+
+  </div>
+
+  <div *ngIf="upFileType == 'img'" class="w100 d-flex flex-wrap align-items-center mb-3 justify-content-center">
+    <button
+      (click)="keepSize(imgDragDiv!, 'W')"
+      type="button"
+      class="p-button-secondary mr-2"
+      icon="fas fa-arrows-alt-h"
+      pButton
+      pRipple
+      label="Manter Largura"
+      [loading]="uploading"
+    ></button>
+    <button
+      (click)="keepSize(imgDragDiv, 'H')"
+      type="button"
+      class="p-button-secondary mr-2"
+      icon="fas fa-arrows-alt-v"
+      pButton
+      pRipple
+      label="Manter Altura"
+      [loading]="uploading"
+    ></button>
+    <button
+      (click)="setOriginalSize(imgDragDiv)"
+      type="button"
+      class="p-button-secondary mr-2"
+      icon="far fa-expand-arrows"
+      pButton
+      pRipple
+      label="Tamanho original"
+              [loading]="uploading"
+    ></button>
+    <button
+      (click)="centerImage(imgDragDiv)"
+      type="button"
+      class="p-button-secondary mr-3"
+      icon="far fa-plus-square"
+      pButton
+      pRipple
+      label="Centralizar"
+              [loading]="uploading"
+    ></button>
+    <button
+      (click)="removeMedia(imgDragDiv)"
+      type="button"
+      class="p-button-warning mr-3"
+      icon="pi pi-times"
+      pButton
+      [loading]="uploading"
+      pRipple
+      label="Cancelar edição"
+    ></button>
+    <button
+      pButton
+      pRipple
+      [loading]="uploading"
+      type="submit"
+      icon="fas fa-save"
+      label="Atualizar imagem"
+      [disabled]="!hasFile"
+      (click)="uploadImage(imgDragDiv)"
+    ></button>
+  </div>
+
+  <div class="app-ng-content" style="position: absolute;top: 0;left: 0;display: flex;height: 100%;width: 100%;">
+    <ng-content>
+    </ng-content>
+  </div>
+
+</div>
+

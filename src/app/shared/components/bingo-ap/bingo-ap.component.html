@@ -1,0 +1,183 @@
+<!-- Modal Config -->
+<!-- <p-dialog
+  [(visible)]="visivel_modal"
+  [modal]="true"
+  [style]="{ width: '800px', height: '800px' }"
+  [draggable]="false"
+  appendTo="body"
+  [resizable]="false"
+  styleClass="widget-dialog"
+>
+  <div class="w-100 d-flex justify-content-end my-1 pr-2">
+    <app-compartilhar
+      [target]="'cardSelos'"
+      titulo="Alta Performance"
+      [advancedMode]="true"
+    >
+    </app-compartilhar>
+  </div>
+
+  <div
+    id="cardSelos"
+    class="w-100 d-flex justify-content-center px-2"
+    #cardSelos
+  >
+    <div class="w-100 d-flex flex-row cartela-xg mb-2">
+      <div
+        class="w-15 flex-column d-flex flex-grow-1 justify-content-center align-items-center"
+      >
+        <div class="h-18">&nbsp;</div>
+        <div class="h-82 d-flex justify-content-center align-items-center">
+          <p class="nome_unidade_xg text-truncate" style="max-width: 450px">
+            {{ unidade?.no_unidade }}
+          </p>
+        </div>
+      </div>
+
+      <div class="w-70 d-flex flex-column">
+        <div class="h-18">&nbsp;</div>
+        <div class="h-82 d-flex justify-content-around flex-wrap cards-ap-xg">
+          <ng-container *ngFor="let mesBingo of dadosBingo">
+            <img
+              *ngIf="mesBingo.flag_ap"
+              [src]="'assets/img/face-caixa/bingo/ap/' + mesBingo.mes + '.png'"
+            />
+            <img
+              *ngIf="!mesBingo.flag_ap"
+              [src]="
+                'assets/img/face-caixa/bingo/nao_ap/' + mesBingo.mes + '.png'
+              "
+            />
+          </ng-container>
+        </div>
+      </div>
+      <div class="w-15 d-flex flex-column">
+        <div style="position: relative; display: block">
+          <span
+            style="
+              color: #fff;
+              font-size: 350%;
+              position: absolute;
+              top: 20px;
+              right: 15%;
+              font-weight: 600;
+            "
+            >{{ ano }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog> -->
+<!-- Carregando -->
+<div
+  class="w-100 d-flex flex-row cartela mb-2"
+  style="min-height: 358px"
+  *ngIf="loading"
+>
+  <div
+    class="w-15 flex-column d-flex flex-grow-1 justify-content-center align-items-center"
+  >
+    <div class="h-15">&nbsp;</div>
+    <div class="h-85 d-flex justify-content-center align-items-center">
+      &nbsp;
+    </div>
+  </div>
+
+  <div
+    class="w-70 d-flex flex-row justify-content-center align-items-center flex-wrap cards-ap-loading"
+  >
+    <div class="loading loading02">
+      <span>C</span>
+      <span>A</span>
+      <span>R</span>
+      <span>R</span>
+      <span>R</span>
+      <span>E</span>
+      <span>G</span>
+      <span>A</span>
+      <span>N</span>
+      <span>D</span>
+      <span>O</span>
+    </div>
+  </div>
+  <div class="w-15"></div>
+
+  <!-- <p-skeleton width="100%" height="8rem"></p-skeleton> -->
+</div>
+
+<!-- Carregado -->
+<!-- <div
+  *ngIf="compartilharInicio"
+  class="w-100 d-flex justify-content-end my-1 pr-2"
+>
+  <app-compartilhar
+    [target]="'cardSelos2'"
+    titulo="Alta Performance"
+    [advancedMode]="true"
+  >
+  </app-compartilhar>
+</div> -->
+<div class="w-100" style="position: relative">
+  <div *ngIf="creatingCard" class="exportacao_card">
+    <span
+      style="
+        top: 40%;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 26px;
+        font-weight: 600;
+        padding-left: 3rem;
+      "
+      >Exportando Card...</span
+    >
+  </div>
+
+  <div
+    *ngIf="!loading"
+    id="cardExport"
+    (click)="creatingCard ? null : takePicture()"
+    [class.cursor-pointer]="!creatingCard"
+    class="w-100 d-flex flex-row cartela mb-2 cardSelos2"
+  >
+    <div
+      class="w-15 flex-column d-flex flex-grow-1 justify-content-center align-items-center"
+    >
+      <div class="h-15">&nbsp;</div>
+      <div class="h-85 d-flex justify-content-center align-items-center">
+        <p class="nome_unidade_xg text-truncate" style="max-width: 450px">
+          {{ unidade?.no_unidade }}
+        </p>
+      </div>
+    </div>
+
+    <div class="w-70 d-flex flex-row justify-content-around flex-wrap cards-ap">
+      <ng-container *ngFor="let mesBingo of dadosBingo">
+        <img
+          *ngIf="mesBingo.flag_ap"
+          [src]="'assets/img/face-caixa/bingo/ap/' + mesBingo.mes + '.png'"
+        />
+        <img
+          *ngIf="!mesBingo.flag_ap"
+          [src]="'assets/img/face-caixa/bingo/nao_ap/' + mesBingo.mes + '.png'"
+        />
+      </ng-container>
+    </div>
+    <div id="barraAno" class="w-15 d-flex flex-column">
+      <div style="position: relative; display: block">
+        <span
+          style="
+            color: #fff;
+            font-size: 350%;
+            position: absolute;
+            top: 10px;
+            right: 10%;
+            font-weight: 600;
+          "
+          >{{ ano }}</span
+        >
+      </div>
+    </div>
+  </div>
+</div>

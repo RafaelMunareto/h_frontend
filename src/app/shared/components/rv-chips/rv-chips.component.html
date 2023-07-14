@@ -1,0 +1,16 @@
+<div class="p-3">
+  <h1>Chips</h1>
+  <h5>Basic Small</h5>
+  <p-chips (ngModel)="values1" class="p-chips-sm"></p-chips>
+
+  <h5>Comma Separator</h5>
+  <p-chips (ngModel)="values2" separator=","></p-chips>
+
+  <h5>ng-template</h5>
+  <p-chips (ngModel)="values3">
+    <ng-template let-item pTemplate="item">
+      {{item}} - (active) <i class="pi pi-user ml-2"></i>
+    </ng-template>
+  </p-chips>
+
+</div>

@@ -1,0 +1,95 @@
+<div class="w100" [class.ng-dirty]="formErro">
+  <div #list id="marcaUnLista" class="lista-sugestoes">
+    <ng-container *ngIf="!loadingListaUns; else lstLoading">
+      <div class="first" style="color: #696969">
+        <i class="far fa-tag"></i>&nbsp; Marcar Unidade / Matrícula
+      </div>
+      <hr style="margin: 4px 0" />
+      <ng-container
+        *ngIf="unidadesFiltered.length <= 0 && matriculasFiltered.length <= 0"
+      >
+        <div class="p-3">Digite ao menos 3 caracteres para pesquisa...</div>
+      </ng-container>
+      <ng-container *ngIf="unidadesFiltered.length > 0">
+        <div
+          *ngFor="let it of unidadesFiltered"
+          (click)="markUn(it.nu_unidade, it.no_unidade)"
+        >
+          {{ it.no_unidade }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="matriculasFiltered.length > 0">
+        <div
+          *ngFor="let it of matriculasFiltered"
+          (click)="markUn(it.matricula, it.nome)"
+        >
+          {{ it.matricula }} - {{ it.nome }}
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-template #lstLoading>
+      <div class="mark-lista-unidades">
+        <i class="fas fa-circle-notch fa-spin"></i>
+      </div>
+    </ng-template>
+  </div>
+  <p-editor #origEditor
+    [(ngModel)]="pEditorContent"
+    [modules]="customModules"
+    id="marcaUnTexto"
+    name="marcaUnTexto"
+    [placeholder]="customPlaceholder"
+    (keydown)="unFormatBack($event)"
+    (keyup)="waitCursor($event, list)"
+    (onInit)="startEditor($event)"
+    (paste)="pasteEditor($event)"
+    (click)="hideList()"
+    [style]="{ height: customHeight, width: customWidth, 'font-size': customFontSize }"
+    [ngClass]="{'noToolbarHeader': !hasHeader}"
+  >
+    <ng-template pTemplate="header">
+      <ng-container *ngIf="hasHeader">
+
+        <span class="ql-formats">
+          <button type="button" class="ql-bold" aria-label="Negrito"></button>
+          <button type="button" class="ql-italic" aria-label="Itálico"></button>
+          <button
+            type="button"
+            class="ql-underline"
+            aria-label="Sublinhar"
+          ></button>
+        </span>
+        <span class="ql-formats">
+          <button
+            type="button"
+            class="ql-list"
+            aria-label="Lista"
+            value="ordered"
+          ></button>
+          <button
+            type="button"
+            class="ql-list"
+            aria-label="Lista"
+            value="bullet"
+          ></button>
+        </span>
+        <span class="ql-formats">
+          <!-- <button
+            type="button"
+            class="ql-emoji"
+            aria-label="Emojis"
+            value="emoji"
+          ></button> -->
+          <button
+            type="button"
+            class="ql-link"
+            aria-label="Link"
+            value="Link"
+            (click)="adjustLeft()"
+          ></button>
+        </span>
+
+      </ng-container>
+    </ng-template>
+  </p-editor>
+</div>

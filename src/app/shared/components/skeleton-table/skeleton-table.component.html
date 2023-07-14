@@ -1,0 +1,19 @@
+
+<p-table [value]="valor">
+  <ng-template pTemplate="header">
+      <tr>
+          <td><p-skeleton height='2rem'></p-skeleton></td>
+          <td><p-skeleton height='2rem'></p-skeleton></td>
+          <td><p-skeleton height='2rem'></p-skeleton></td>
+          <td><p-skeleton height='2rem'></p-skeleton></td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+      <tr>
+          <td><p-skeleton height='1rem'></p-skeleton></td>
+          <td><p-skeleton height='1rem'></p-skeleton></td>
+          <td><p-skeleton height='1rem'></p-skeleton></td>
+          <td><p-skeleton height='1rem'></p-skeleton></td>
+      </tr>
+  </ng-template>
+</p-table>

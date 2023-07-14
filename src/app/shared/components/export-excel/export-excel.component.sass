@@ -1,0 +1,263 @@
+$cor3: #F8F9FA
+$teal: #0F7BB4
+
+
+$azul: #0268b6
+
+$teal_light: rgb(2, 104, 182,0.6)
+$grey: #D3D3D3
+
+.azul-text
+  color: $azul
+
+
+.title
+  font-weight: bold
+  color: $teal
+
+li
+  list-style-type: none
+  font-size: 90%
+
+.bold
+  font-weight: bold
+
+//search
+:host ::ng-deep .p-inputtext:hover
+    border: 1px solid $teal
+
+:host ::ng-deep .p-inputtext:focus
+    box-shadow: 0 0 0 0.2rem $teal_light
+    border: 1px solid $teal
+
+:host ::ng-deep .p-autocomplete .p-component
+  min-width: 22rem
+
+
+  //fielset
+:host ::ng-deep .p-fieldset .p-fieldset-content
+  margin: 1rem
+  padding: 0rem
+  display: flex
+  justify-content: space-around
+  flex-wrap: wrap
+
+:host ::ng-deep .p-fieldset
+  background: #F8F9FA
+  border: 1px solid $teal
+
+:host ::ng-deep .p-fieldset-legend
+  max-width: 10rem
+  font-size: 100%
+  text-align: center
+  background: $azul
+  color: #fff
+  margin-left: 5rem !important
+
+:host ::ng-deep .p-panel-header
+  background: $azul
+  color: white
+  font-weight: bold
+  margin-top:1rem
+
+
+.size120
+  font-size: 120%
+
+.size130
+  font-size: 130%
+
+.size140
+  font-size: 140%
+
+.size150
+  font-size: 150%
+
+.ouro
+  color: #F7D000
+  border: 1px solid #F7D000
+
+.prata
+  color: #DFDFDF
+  border: 1px solid #DFDFDF
+
+.bronze
+  color: #C77B30
+  border: 1px solid #C77B30
+
+.niquel
+  color: #DFDFDF
+  border: 1px solid #DFDFDF
+
+
+.ouro_puro
+  color: #F7D000
+
+.prata_puro
+  color: #DFDFDF
+
+.bronze_puro
+  color: #C77B30
+
+.niquel_puro
+  color: #DFDFDF
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th
+  background: $grey !important
+  font-size: 90%
+  color: grey !important
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td
+  font-size: 90%
+
+:host ::ng-deep .p-sortable-column-icon
+  color: $azul !important
+
+:host ::ng-deep .p-datatable-footer
+  background: #ffff
+
+:host ::ng-deep .p-link:focus
+  box-shadow: 0 0 0 0.2rem $teal
+
+:host ::ng-deep .p-button-success
+  background: $teal
+  border: $teal
+
+:host ::ng-deep .pi-times
+  background: none
+  //border: $teal
+
+//button
+
+:host ::ng-deep .p-button:focus
+  border: $teal
+
+:host ::ng-deep .p-button:activie
+  border: $teal
+  background: $teal
+
+//cores
+.azul
+  background: $azul
+
+//Modificações layout
+.card_variacao_nota
+  font-size: 12px
+  padding: 5px 15px
+
+.card_variacao_body
+  padding: 1rem
+  text-align: center
+
+.card_variacao_mb
+  margin-bottom: 58.3px
+
+.blue_padrao
+  color:$azul
+
+.blue
+  color:#2196F5 !important
+
+.un_class
+  border: solid 1px #ddd
+  border-radius: 4px
+  padding: 5px
+
+//Adequação Layout
+.p-button.p-button-icon-only.p-button-rounded
+  border-radius: 50%
+  height: 1rem
+
+.p-button.p-button-icon-only
+    width: 1rem
+    padding: 0.5rem 0
+
+:host ::ng-deep .pi.p_micro
+  font-size: 0.5rem !important
+
+//paginator
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight
+    background:$teal_light
+    border: $teal
+
+//Cards
+.rescard
+  border: solid 1px #ccc
+  border-top: solid 3px #0268b6
+  padding: 0 15px 15px 15px
+  border-radius: 5px
+  box-shadow: 0px 1px 2px rgb(184, 184, 184)
+  margin-bottom: 20px
+
+.rescard_Title
+  font-weight: 700
+  padding: 15px 0 10px 0px
+  color: #277cb5
+  font-size: 16px
+
+.rescard_Sub
+  font-weight: 700
+  font-size: 10px
+  color: #898c8f
+  margin-top: 3px
+
+.rescard_Graph
+  font-weight: 700
+  font-size: 12px
+  color: #898c8f
+  margin-top: 3px
+
+.card_hr
+  margin: 0 0 12px 0
+
+.rescard_val
+  font-weight: 700
+  color: rgb(33, 150, 243)
+  font-size: 16px
+
+.rescard_obj
+  font-weight: 700
+  color: rgb(33, 150, 243)
+  font-size: 14px
+  margin-bottom: 8px
+
+.title_rescard_group
+  width: 100%
+  border-bottom: solid 2px #ababab
+  margin: 15px
+  font-weight: 700
+  font-size: 20px
+  color: #1e6696
+
+//Compara
+
+//tamanho_dropdown
+:host ::ng-deep .tamanho_periodo
+  min-width: 100%
+
+.title
+  color: #949494
+  font-weight: bold
+
+//cards das notas
+:host ::ng-deep .card_nota .p-card-body
+  text-align: center !important
+  padding: 0.3rem !important
+
+:host ::ng-deep .card_nota .p-card-header
+  font-weight: bold !important
+  color: $azul !important
+
+:host ::ng-deep .card_nota .p-card-body .p-card-content
+  padding: 0
+
+:host ::ng-deep .mh128
+  min-height: 128px
+
+:host ::ng-deep app-search form span
+  width: 100%
+
+//Períodos
+.reduced
+  width: 170px
+  display: inline-block

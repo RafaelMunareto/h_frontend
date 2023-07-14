@@ -1,0 +1,59 @@
+<div class="w100 d-flex align-items-end mb-2" [style]="{ 'width':cardWidth }">
+
+  <div class="w100">
+    <small style="font-weight:700">Selecione o tema do card:</small>
+    <p-dropdown [options]="themes" [(ngModel)]="selectedTheme" optionLabel="label" class="p-dropdown-sm">
+      <ng-template pTemplate="selectedItem">
+        <div class="d-flex">
+          <div style="border: solid 1px #ddd; display:flex">
+            <div *ngFor="let t of selectedTheme.paleta" class="color-block" [style]="{ 'background-color': t }"></div>
+          </div>
+          <div class="pl-2">{{ selectedTheme.label }}</div>
+        </div>
+      </ng-template>
+      <ng-template let-tema pTemplate="item">
+        <div class="d-flex">
+          <div style="border: solid 1px #ddd; display:flex">
+            <div *ngFor="let t of tema.paleta" class="color-block" [style]="{ 'background-color': t }"></div>
+          </div>
+          <div class="pl-2">{{ tema.label }}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+
+  <div class="ml-2">
+    <p-button label=" Baixar Card" icon="fas fa-download" 
+      (onClick)="takePicture()" [loading]="creatingCard">
+    </p-button>
+  </div>
+
+</div>
+
+
+<div parentHolder>
+  <div id="card-maker-main-div" [class]="'custom-card ' + selectedTheme.value" [style]="{ 'width':cardWidth }">
+    <div class="firula-caixa top"></div>
+    <div class="classificacao">{{ cardData.classificacao }}</div>
+    <img src="assets/img/logos/logo_caixa_branco_2.png" alt="" srcset="">
+    <div class="custom-card-title">{{ cardData.titulo }}</div>
+    <div class="custom-card-sub">{{ cardData.subTitulo }}</div>
+    <div style="position: relative;" *ngFor="let cd of cardData.acoes">
+      <div class="custom-card-header">
+        <div style="transform: skew(25deg) !important;">
+          {{ cd.titulo }}
+        </div>
+      </div>
+      <div class="custom-card-text">
+        {{ cd.texto }}
+      </div>
+    </div>
+    <div class="firula-caixa bottom"></div>
+    <div class="custom-card-footer">
+      <div class="dt-footer">{{ cardData.data }}</div>
+      <div class="un-resp">{{ cardData.areaResp }}</div>
+    </div>
+  </div>
+</div>
+
+<iframe id="iCard"></iframe>

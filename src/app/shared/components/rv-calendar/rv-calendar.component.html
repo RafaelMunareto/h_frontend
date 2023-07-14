@@ -1,0 +1,95 @@
+<div class="p-3">
+  <h1>Calendar</h1>
+
+
+  <h5>Popup</h5>
+  <div class="p-fluid grid formgrid">
+    <div class="field col-12 md:col-4">
+      <label for="basic">Basic</label>
+      <p-calendar inputId="basic" (ngModel)="date1"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="dateformat">DateFormat</label>
+      <p-calendar (ngModel)="date2" dateFormat="mm-dd-yy" inputId="dateformat"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="icon">Icon</label>
+      <p-calendar (ngModel)="date3" [showIcon]="true" inputId="icon" class="p-calendar-sm"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="min-max">MinMax</label>
+      <p-calendar (ngModel)="date4" [minDate]="minDate" [maxDate]="maxDate" [readonlyInput]="true" inputId="min-max">
+      </p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="disabledays">Disabled Days</label>
+      <p-calendar (ngModel)="date5" [disabledDates]="invalidDates" [disabledDays]="[0,6]" [readonlyInput]="true"
+        inputId="disabledays"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="multiple">Multiple</label>
+      <p-calendar (ngModel)="dates" selectionMode="multiple" [readonlyInput]="true" inputId="multiple"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="range">Range</label>
+      <p-calendar (ngModel)="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="buttonbar">Button Bar</label>
+      <p-calendar (ngModel)="date6" [showButtonBar]="true" inputId="buttonbar"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="time">Time / 24h</label>
+      <p-calendar (ngModel)="date7" [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="timeonly">Time / 12h</label>
+      <p-calendar (ngModel)="date8" [timeOnly]="true" hourFormat="12" inputId="timeonly"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="monthpicker">Month Picker</label>
+      <p-calendar (ngModel)="date9" view="month" dateFormat="mm/yy" [readonlyInput]="true" inputId="monthpicker">
+      </p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="yearpicker">Year Picker</label>
+      <p-calendar (ngModel)="date10" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="multiplemonths">Multiple Months</label>
+      <p-calendar (ngModel)="date11" [numberOfMonths]="3" inputId="multiplemonths"></p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="template">Date Template</label>
+      <p-calendar (ngModel)="date12" inputId="template">
+        <ng-template pTemplate="date" let-date>
+          <span
+            (ngStyle)="{textDecoration: (date.day < 21 && date.day > 10) ? 'line-through' : 'inherit'}">{{date.day}}</span>
+        </ng-template>
+      </p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="touchui">Touch UI</label>
+      <p-calendar (ngModel)="date13" [touchUI]="true" [readonlyInput]="true" inputId="touchui"></p-calendar>
+    </div>
+  </div>
+
+  <h5>Inline</h5>
+  <p-calendar (ngModel)="date14" [inline]="true" [showWeek]="true"></p-calendar>
+
+
+</div>

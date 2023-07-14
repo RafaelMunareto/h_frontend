@@ -1,0 +1,12 @@
+<div
+  class="w-full h-full flex justify-content-center align-items-center flex-column"
+  *ngIf="!redirecionarParaRedeVarejo"
+>
+  <i class="fad fa-heart-broken fa-8x mb-4 text-orange-600"></i>
+  <p class="text-3xl">404 - Página não encontrada</p>
+  <p class="text-3xl">
+    Clique <a (click)="voltarAoInicio($event)" href="#">aqui</a> para retornar ao
+    ínicio
+  </p>
+  <p class="text-3xl">ou use o menu lateral para selecinar outra página</p>
+</div>
