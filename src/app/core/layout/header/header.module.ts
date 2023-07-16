@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DirectiveModule } from 'src/app/shared/directive/directive.module';
 import { RouterModule } from '@angular/router';
-import { DscHeaderModule } from 'dsc-components';
+import { DscHeaderModule, DscMenuLateralModule } from 'dsc-components';
 import { HeaderComponent } from './header.component';
 
 @NgModule({
@@ -14,6 +14,7 @@ import { HeaderComponent } from './header.component';
     DirectiveModule,
     RouterModule,
     DscHeaderModule,
+    DscMenuLateralModule
   ],
   exports: [HeaderComponent],
 })

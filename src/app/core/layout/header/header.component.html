@@ -1,8 +1,20 @@
 <div class="content">
+  <dsc-menu-lateral
+    [dscMenuOpen]="acionaMenu"
+    [dscItemsMenu]="arrayMenu"
+    [dscTopGap]="80"
+    [dscFixed]="true"
+  >
+    <span>Conteúdo menu</span>
+  </dsc-menu-lateral>
   <dsc-header
-    dscSiglaSistema="DSC"
-    dscNomeSistema="Design System CAIXA"
+    (toggleEvent)="buttonAcion()"
+    dscSiglaSistema="TOP10"
+    dscNomeSistema="HACKATON CAIXA"
     dscTipoAcesso="externo"
+    dscTipoClassificacaoConteudo="confidencial"
+    dscTipoVariacaoHeader="type_6"
+    dscClassificacaoConteudo="INTERNOCAIXA"
   >
   </dsc-header>
 </div>

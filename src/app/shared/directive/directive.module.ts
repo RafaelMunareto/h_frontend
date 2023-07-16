@@ -5,7 +5,6 @@ import { AvatarEmpregadoSrcDirective } from './avatar-empregado-src.directive';
 import { ColorNumberAbsDirective } from './color-number-abs.directive';
 import { ColorNumberDirective } from './color-number.directive';
 import { WidgetsDirective } from './face-widgets.directive';
-import { IdImageDirective } from './id-image.directive';
 import { LazyLoadImagesDirective } from './lazy-load-images.directive';
 
 @NgModule({
@@ -16,14 +15,13 @@ import { LazyLoadImagesDirective } from './lazy-load-images.directive';
     WidgetsDirective,
     LazyLoadImagesDirective,
   ],
-  imports: [CommonModule, IdImageDirective],
+  imports: [CommonModule],
   exports: [
     LazyLoadImagesDirective,
     AvatarEmpregadoSrcDirective,
     ColorNumberDirective,
     ColorNumberAbsDirective,
     WidgetsDirective,
-    IdImageDirective,
   ],
 })
 export class DirectiveModule {}

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './core/layout/header/header.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,7 @@ import { HeaderModule } from './core/layout/header/header.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     HeaderModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],

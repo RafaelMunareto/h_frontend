@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 @Pipe({
-  standalone: true,
   name: 'avatarEmpregado',
 })
 export class AvatarEmpregadoPipe implements PipeTransform {
@@ -11,6 +10,6 @@ export class AvatarEmpregadoPipe implements PipeTransform {
     if (blacklist.includes(value.toLowerCase())) {
       value = 'c000000';
     }
-    return `${env.apiUrl}administrativo-free/funcionarios/avatar/${value.toLowerCase()}`;
+    return `${env}administrativo-free/funcionarios/avatar/${value.toLowerCase()}`;
   }
 }
