@@ -1,0 +1,58 @@
+@import "../dsc/cores";
+
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  top: 0;
+}
+
+:host::ng-deep .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:focus-within .mat-form-field-outline {
+  color: $azul_cx-standard;
+}
+
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: $grafite-standard;
+}
+
+:host ::ng-deep .empty {
+  .mat-form-field-outline {
+    color: $cinza-standard;
+  }
+}
+
+:host ::ng-deep .filled {
+  .mat-form-field-outline {
+    color: $cinza-darker-2;
+  }
+}
+
+
+:host ::ng-deep .danger{
+  .mat-form-field-outline {
+    color: transparent;
+  }
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:focus-within .mat-form-field-outline {
+    color: transparent;
+  }
+
+  .mat-form-field-outline-thick {
+    color: transparent;
+  }
+}
+
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-start {
+  border-width: 1px;
+}
+
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-gap {
+  border-width: 1px;
+}
+
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-end {
+  border-width: 1px;
+}
+
+:host::ng-deep .mat-form-field-appearance-outline ::placeholder {
+  color: $cinza-darker-2;
+}
+
+
+

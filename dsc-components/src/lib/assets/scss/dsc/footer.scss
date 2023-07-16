@@ -1,0 +1,26 @@
+
+@import "cores";
+
+
+.footer-hint {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 1px;
+
+  .footer-texto {
+    font-family: futuraBkBt, serif;
+    color: $grafite-lighter-2;
+    margin-top: 3px;
+    font-size: 13px;
+  }
+
+  .footer-count {
+    font-family: futuraBkBt, serif;
+    color: $grafite-lighter-2;
+    margin-top: 3px;
+    margin-left: 8px;
+    font-size: 13px;
+  }
+
+}

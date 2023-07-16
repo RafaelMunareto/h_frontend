@@ -1,0 +1,34 @@
+@use 'sass:map';
+@use '../cores' as *;
+
+@function _define-button-theme-config-values(
+  $type-button,
+  $text-color,
+  $background-color,
+  $background-color-hover,
+  $background-color-active,
+  $border-color-focus
+) {
+  @return (
+    type-button:             $type-button,
+    text-color:              $text-color,
+    background-color:        $background-color,
+    background-color-hover:  $background-color-hover,
+    background-color-active: $background-color-active,
+    border-color-focus:      $border-color-focus,
+  );
+}
+
+@function define-button-theme-config(
+  $primary: _define-button-theme-config-values("primary", $cinza-lighter-2, $laranja_cx-standard, $laranja_cx-lighter-1, $laranja_cx-darker-1, $laranja_cx-darker-2),
+  $secondary: _define-button-theme-config-values("secondary", $cinza-lighter-2, $azul_cx-standard, $azul_cx-lighter-1, $azul_cx-darker-1, $azul_cx-lighter-2),
+  $auxiliary: _define-button-theme-config-values("aux", $grafite-standard, $cinza-lighter-2, $polar, $cinza-standard, $azul_cx-lighter-2),
+  $auxiliary-dest: _define-button-theme-config-values("aux-dest", $azul_cx-standard, $cinza-lighter-2, $azul_cx-lighter-5, $azul_cx-lighter-3, $azul_cx-lighter-2),
+  $danger: _define-button-theme-config-values("danger", $cinza-lighter-2, $danger-standard, $danger-lighter-1, $danger-darker-1, $danger-lighter-2)
+) {
+  @return ($primary, $secondary, $auxiliary, $auxiliary-dest, $danger);
+}
+
+@function get-value($button-theme-config-values, $key) {
+  @return map.get($button-theme-config-values, $key);
+}

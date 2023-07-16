@@ -1,0 +1,10 @@
+/**
+ * Generated bundle index. Do not edit.
+ */
+export * from './public-api';
+export { DscFormFieldErrorComponent as ɵb } from './lib/componentes/dsc-form-field-error/dsc-form-field-error.component';
+export { DscFormFieldErrorModule as ɵa } from './lib/componentes/dsc-form-field-error/dsc-form-field-error.module';
+export { ItemMenuExpansivelComponent as ɵc } from './lib/componentes/dsc-menu-lateral/item-menu-expansivel/item-menu-expansivel.component';
+export { ItemMenuNormalComponent as ɵd } from './lib/componentes/dsc-menu-lateral/item-menu-normal/item-menu-normal.component';
+
+//# sourceMappingURL=dsc-components.d.ts.map

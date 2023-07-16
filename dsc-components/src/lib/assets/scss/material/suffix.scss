@@ -1,0 +1,45 @@
+@import "../dsc/cores";
+
+
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix {
+  display: flex;
+  top: 1px;
+  right: 1px;
+  align-items: center;
+  background: #f6f9f9;
+  border-radius: 0 2.7px 4px 0;
+  height: calc(100% - 2px);
+}
+
+:host ::ng-deep .dsc-clear-button{
+  .mat-form-field-suffix {
+    background: transparent;
+  }
+}
+
+
+:host ::ng-deep .danger {
+  .mat-form-field-suffix {
+    top: 0;
+    right: 0;
+    height: 100%;
+  }
+}
+
+:host::ng-deep .mat-form-field-suffix .mat-icon {
+  color: $grafite-standard;
+}
+
+:host::ng-deep .dsc-icon-suffix-red {
+  .mat-icon {
+    color: $danger-standard;
+  }
+}
+
+:host::ng-deep .dsc-body-suffix-white {
+  .mat-form-field-suffix {
+    background: $cinza-lighter-2;
+  }
+}
+
+

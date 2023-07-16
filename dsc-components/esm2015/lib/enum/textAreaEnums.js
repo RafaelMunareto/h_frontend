@@ -1,0 +1,7 @@
+export var TamanhoTextAreaEnum;
+(function (TamanhoTextAreaEnum) {
+    TamanhoTextAreaEnum["LARGE"] = "large";
+    TamanhoTextAreaEnum["STANDARD"] = "standard";
+    TamanhoTextAreaEnum["SMALL"] = "small";
+})(TamanhoTextAreaEnum || (TamanhoTextAreaEnum = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGV4dEFyZWFFbnVtcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL2RzYy1jb21wb25lbnRzL3NyYy9saWIvZW51bS90ZXh0QXJlYUVudW1zLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLG1CQUtYO0FBTEQsV0FBWSxtQkFBbUI7SUFDN0Isc0NBQWUsQ0FBQTtJQUNmLDRDQUFxQixDQUFBO0lBQ3JCLHNDQUFlLENBQUE7QUFFakIsQ0FBQyxFQUxXLG1CQUFtQixLQUFuQixtQkFBbUIsUUFLOUIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBUYW1hbmhvVGV4dEFyZWFFbnVtIHtcbiAgTEFSR0UgPSAnbGFyZ2UnLFxuICBTVEFOREFSRCA9ICdzdGFuZGFyZCcsXG4gIFNNQUxMID0gJ3NtYWxsJ1xuXG59XG4iXX0=

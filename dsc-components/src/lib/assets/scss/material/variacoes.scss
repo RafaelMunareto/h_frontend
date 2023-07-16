@@ -1,0 +1,123 @@
+@import "../dsc/cores";
+
+.input-form {
+  font-family: futuraBkBt, serif;
+  color: $grafite-standard;
+}
+
+.dsc-large {
+  .input-form {
+    height: 48px;
+  }
+}
+
+.dsc-standard {
+  .input-form {
+    height: 40px;
+  }
+}
+
+.dsc-small {
+  .input-form {
+    height: 32px;
+  }
+}
+
+:host::ng-deep .dsc-large {
+  .mat-form-field-flex {
+    height: 48px;
+    font-size: 18px;
+  }
+
+  .mat-form-field-outline {
+    height: 48px;
+  }
+
+  .mat-form-field-prefix {
+    width: 48px;
+  }
+
+  .mat-form-field-suffix {
+    width: 48px;
+  }
+
+  .mat-form-field-prefix .mat-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    padding: 13px;
+  }
+
+  .mat-form-field-suffix .mat-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    padding: 13px;
+  }
+}
+
+:host::ng-deep .dsc-standard {
+  .mat-form-field-flex {
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .mat-form-field-outline {
+    height: 40px;
+  }
+
+  .mat-form-field-prefix {
+    width: 40px;
+  }
+
+  .mat-form-field-suffix {
+    width: 40px;
+  }
+
+  .mat-form-field-prefix .mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    padding: 12px;
+  }
+
+  .mat-form-field-suffix .mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    padding: 12px;
+  }
+}
+
+:host::ng-deep .dsc-small {
+  .mat-form-field-flex {
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .mat-form-field-outline {
+    height: 32px;
+  }
+
+  .mat-form-field-prefix {
+    width: 32px;
+  }
+
+  .mat-form-field-suffix {
+    width: 32px;
+  }
+
+  .mat-form-field-prefix .mat-icon {
+    font-size: 12px;
+    width: 12px;
+    height: 10px;
+    padding: 10px;
+  }
+
+  .mat-form-field-suffix .mat-icon {
+    font-size: 12px;
+    width: 12px;
+    height: 10px;
+    padding: 10px;
+  }
+}

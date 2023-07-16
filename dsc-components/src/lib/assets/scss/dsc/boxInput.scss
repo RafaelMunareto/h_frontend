@@ -1,0 +1,28 @@
+@import "cores";
+
+.box-input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.icon-white {
+  color: white;
+}
+
+.icon-black {
+  color: $grafite-lighter-1;
+}
+
+.box-input {
+  &.danger {
+    background: $danger-standard;
+    border: 1px solid $danger-standard;
+    border-radius: 4px;
+  }
+}

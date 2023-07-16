@@ -1,0 +1,1 @@
+{"version":3,"file":"dsc-select.module.d.ts","sources":["dsc-select.module.d.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA;;;;AACA","sourcesContent":["export declare class DscSelectModule {\n}\n"]}

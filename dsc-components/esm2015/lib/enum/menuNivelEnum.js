@@ -1,0 +1,7 @@
+export var MenuNivelEnum;
+(function (MenuNivelEnum) {
+    MenuNivelEnum["PRIMEIRO"] = "primeiro";
+    MenuNivelEnum["SEGUNDO"] = "segundo";
+    MenuNivelEnum["TERCEIRO"] = "terceiro";
+})(MenuNivelEnum || (MenuNivelEnum = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWVudU5pdmVsRW51bS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL2RzYy1jb21wb25lbnRzL3NyYy9saWIvZW51bS9tZW51Tml2ZWxFbnVtLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLGFBSVg7QUFKRCxXQUFZLGFBQWE7SUFDdkIsc0NBQXFCLENBQUE7SUFDckIsb0NBQW1CLENBQUE7SUFDbkIsc0NBQXFCLENBQUE7QUFDdkIsQ0FBQyxFQUpXLGFBQWEsS0FBYixhQUFhLFFBSXhCIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gTWVudU5pdmVsRW51bSB7XG4gIFBSSU1FSVJPID0gJ3ByaW1laXJvJyxcbiAgU0VHVU5ETyA9ICdzZWd1bmRvJyxcbiAgVEVSQ0VJUk8gPSAndGVyY2Vpcm8nXG59XG4iXX0=

@@ -1,0 +1,57 @@
+@use '../cores' as *;
+@use './button-theme-utils' as *;
+
+@mixin _build-button-style($button-theme-config-values) {
+  $type-button: get-value($button-theme-config-values, type-button);
+  $text-color: get-value($button-theme-config-values, text-color);
+  $background-color: get-value($button-theme-config-values, background-color);
+  $background-color-hover: get-value($button-theme-config-values, background-color-hover);
+  $background-color-active: get-value($button-theme-config-values, background-color-active);
+  $border-color-focus: get-value($button-theme-config-values, border-color-focus);
+
+  &.dsc-#{$type-button} {
+    color: $text-color;
+    background: $background-color;
+
+    @if $type-button == "aux" {
+      border: 1px solid $grafite-standard;
+    } @else if $type-button == "aux-dest" {
+      border: 1px solid $azul_cx-standard;
+    }
+
+    &:hover {
+      &:not([disabled]) {
+        background: $background-color-hover;
+      }
+    }
+
+    &:active {
+      &:not([disabled]) {
+        background: $background-color-active !important;
+
+        @if $type-button == "aux" {
+          border: 1px solid $grafite-darker-2 !important;
+        } @else if ($type-button == "aux-dest") {
+          border: 1px solid $azul_cx-standard !important;
+        }
+      }
+    }
+
+    &:focus {
+      &:not([disabled]) {
+        @if ($type-button == "aux" or $type-button == "aux-dest") {
+          background-color: $cinza-lighter-2;
+        }
+
+        border: 1px solid $border-color-focus;
+      }
+    }
+  }
+}
+
+@mixin button-themes() {
+  $button-theme-config: define-button-theme-config();
+  @each $button-theme-config-values in $button-theme-config {
+    @include _build-button-style($button-theme-config-values);
+  }
+}

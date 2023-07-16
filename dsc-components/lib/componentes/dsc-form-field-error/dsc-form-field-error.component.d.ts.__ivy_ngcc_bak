@@ -1,0 +1,8 @@
+import { NgControl } from '@angular/forms';
+export declare class DscFormFieldErrorComponent {
+    formField: NgControl;
+    customErrorMessage?: string;
+    errorMessage(): string | null;
+    private _mustShowErrorMessage;
+    private _getErrorMessage;
+}

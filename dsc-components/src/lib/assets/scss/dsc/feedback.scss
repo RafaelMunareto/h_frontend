@@ -1,0 +1,23 @@
+.complementar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  padding: 4px;
+
+  .icon-complementar {
+    margin-left: 0.5em;
+    margin-top: 0.1em;
+    font-size: 15px;
+    width: 15px;
+    height: 16px;
+  }
+
+
+  .texto-complementar {
+    font-family: futuraBkBt, serif;
+    margin-left: 0.5em;
+    font-size: 13px;
+  }
+
+}

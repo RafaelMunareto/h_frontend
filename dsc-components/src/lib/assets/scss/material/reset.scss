@@ -1,0 +1,21 @@
+
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  display: flex;
+  padding: 0;
+  margin-left: 0.7em;
+  border-top: 0;
+}
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  padding-bottom: 0;
+  margin: 0;
+}
+
+:host::ng-deep input.mat-input-element {
+  margin-top: 0;
+}
+
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  padding: 0;
+  margin-top: 0;
+  align-items: normal;
+}

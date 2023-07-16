@@ -1,0 +1,47 @@
+@import "../dsc/cores";
+
+:host::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-disabled
+  .mat-form-field-outline-thick
+  .mat-form-field-outline-start {
+  background: $cinza-lighter-1;
+}
+
+:host::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-disabled
+  .mat-form-field-outline-thick
+  .mat-form-field-outline-gap {
+  background: $cinza-lighter-1;
+}
+
+:host::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-disabled
+  .mat-form-field-outline-thick
+  .mat-form-field-outline-end {
+  background: $cinza-lighter-1;
+}
+
+:host::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-disabled
+  .mat-form-field-outline
+  .mat-form-field-outline-start {
+  background: $cinza-lighter-1;
+}
+
+:host::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-disabled
+  .mat-form-field-outline
+  .mat-form-field-outline-gap {
+  background: $cinza-lighter-1;
+}
+
+:host::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-disabled
+  .mat-form-field-outline
+  .mat-form-field-outline-end {
+  background: $cinza-lighter-1;
+}
+
+:host::ng-deep .mat-input-element:disabled {
+  color: $cinza-lighter-1;
+}
